@@ -18,5 +18,9 @@ django-admin startproject crud .
 django-admin startapp posts # 앱 이름 : posts
 ```
 
-- 앱 등록 
-crud - setting에 'posts' 적어주기
+- 앱 등록 (setting)
+```shell
+INSTALLED_APPS = 
+...
+'posts' # 적어주기 
+```
