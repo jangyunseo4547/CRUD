@@ -81,5 +81,21 @@ python manage.py migrate
 python manage.py createsuperuser
 ```
 
-- (`admin.py`)
+- (`admin.py`)에 Post 추가 등록
+```python
+from .models import Post #model.py에 있는 post 사용
+admin.site.register(Post) # admin에 post를 추가 등록
+```
 
+- (`views.py`) 전체 데이터 불러오기 
+```python
+from .models import Post
+
+def index(request):
+    posts = Post.objects.all()
+
+    context = {
+        'posts':posts,
+    }
+    return render(request, 'index.html', context)
+```
