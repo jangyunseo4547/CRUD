@@ -48,7 +48,8 @@ def index(request):
 
 ## 2. CRUD
 
-- modeling : skema 정의 (데이터 정의, 설계) - (`model.py`)
+- `modeling` 
+- skema 정의 (데이터 정의, 설계) - (`model.py`)
 ```python 
 class post(models.Model):
     title = models.CharField(max_length=100) 
@@ -57,7 +58,7 @@ class post(models.Model):
     # TextField : 더 많은 양의 글자를 쓰는 경우 
 ```
 
-- migration
+- `migration`
 - python --> sql(`db.sqlite3`)로 이주
 ```shell
 # 번역본 생성
@@ -70,4 +71,15 @@ python manage.py migrate
 ## Apply all migrations: admin, auth, contenttypes, posts, sessions : posts외의 장고에서 이미 만들어진 파일도 이주함. 
 ```
 
+- extention에서 sqlite viewer 설치 
+    - db.sqlite3가 핑크색으로 바뀜 
+    - `posts_post` 확인 시 title, content, id 생성됨.
+
+- create super user 
+```shell
+# admin의 관리자 페이지 id, pw 만들기
+python manage.py createsuperuser
+```
+
+- (`admin.py`)
 
