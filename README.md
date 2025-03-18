@@ -51,8 +51,23 @@ def index(request):
 - modeling : skema 정의 (데이터 정의, 설계) - (`model.py`)
 ```python 
 class post(models.Model):
-    title = models.CharField(max_length=100) # 글자를 저장하는 필드
-    content = models.TextField() # TextField : 더 많은 양의 글자를 쓰는 경우 
+    title = models.CharField(max_length=100) 
+    # CharField : 글자를 저장하는 필드
+    content = models.TextField() 
+    # TextField : 더 많은 양의 글자를 쓰는 경우 
+```
+
+- migration
+- python --> sql(`db.sqlite3`)로 이주
+```shell
+# 번역본 생성
+python manage.py makemigrations
+```
+
+```shell
+# DB에 반영
+python manage.py migrate
+## Apply all migrations: admin, auth, contenttypes, posts, sessions : posts외의 장고에서 이미 만들어진 파일도 이주함. 
 ```
 
 
