@@ -12,3 +12,11 @@
 ```shell
 django-admin startproject crud .
 ```
+
+- 앱 생성
+```shell
+django-admin startapp posts # 앱 이름 : posts
+```
+
+- 앱 등록 
+crud - setting에 'posts' 적어주기
