@@ -21,10 +21,15 @@ from posts import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     # Read(All)
-    path('index/', views.index),
+    path('posts/', views.index),
     # Read(1)
     path('posts/<int:id>/', views.detail), #상세페이지
     # Create
     path('posts/new/', views.new), 
     path('posts/create/', views.create),
+    # Delete
+    path('posts/<int:id>/delete/', views.delete), # 몇번 게시물을 지울지에 대한 정보를 담음.
+    # update 
+    path('posts/<int:id>/edit/', views.edit), # 수정
+    path('posts/<int:id>/update/', views.update), # 수정된 것 반영
 ]

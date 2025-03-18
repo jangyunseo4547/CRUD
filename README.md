@@ -110,11 +110,16 @@ def detail(request, id):
 
 - (`detail.py`)에 링크 달아 접근하기
 
-### new, create
+### post안에 new, create 생성
 - `urls.py `
 ```shell
 path('posts/new/', views.new), 
 path('posts/create/', views.create),
+```
+- `views.py`
+```shell
+def new(request):
+    return render(request, 'new.html')
 ```
 
 - `new.html`
@@ -124,4 +129,48 @@ path('posts/create/', views.create),
         <input type="text" name="content">
         <input type="submit">
     </form>
+```
+
+`views.py`
+```shell
+def create(request):
+    title = request.GET.get('title')
+    content = request.GET.get('content')
+
+    post = Post()
+    post.title = title  
+    # 전자 : models.py에서 만든 title / 후자 : request.GET에서 가져온 title 
+    post.content = content
+    post.save()
+
+  #  return redirect('/index/') # 게시물 생성 후 index로 이동 (어디로 가야 할지 경로 설정)
+    return redirect(f'/posts/{post.id}/')
+```
+##### 결과
+- /posts/new에서 제목, 내용 입력
+- /posts/{post.id}로 이동
+- home or detail로 돌아갈 수 있음.
+
+### post안에 delete 
+- 사용자가 삭제 버튼을 누름
+- 게시물울 찾음 `post = Post.object.get(id=id)`
+- 게시물을 삭제 `post.delete()`
+
+
+### update
+```python
+def update(request, id): 
+    # 기존 정보 가져오기
+    post = Post.objects.get(id=id)
+
+    # 새로운 정보 가져오기
+    title = request.GET.get('title')
+    content = request.GET.get('content')
+    
+    # 기존 정보를 새로운 정보로 수정하기
+    post.title = title
+    post.content = content
+    post.save()
+
+    return redirect(f'/posts/{post.id}/')
 ```
