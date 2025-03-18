@@ -108,4 +108,20 @@ def detail(request, id):
     return render(request, 'detail.html', context)
 ```
 
-- (`detail.py`)에 링크 달어 접근하기
+- (`detail.py`)에 링크 달아 접근하기
+
+### new, create
+- `urls.py `
+```shell
+path('posts/new/', views.new), 
+path('posts/create/', views.create),
+```
+
+- `new.html`
+```shell
+<form action="/posts/create/">  # new에서 create로 가려는 시도
+        <input type="text" name="title">
+        <input type="text" name="content">
+        <input type="submit">
+    </form>
+```

@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Post
 # Create your views here.
 
@@ -18,3 +18,18 @@ def detail(request, id):
         'post':post,
     }
     return render(request, 'detail.html', context)
+
+def new(request):
+    return render(request, 'new.html')
+
+def create(request):
+    title = request.GET.get('title')
+    content = request.GET.get('content')
+
+    post = Post()
+    post.title = title  # 전자 : models.py에서 만든 title / 후자 : request.GET에서 가져온 title 
+    post.content = content
+    post.save()
+
+  #  return redirect('/index/') # 게시물 생성 후 index로 이동 (어디로 가야 할지 경로 설정)
+    return redirect(f'/posts/{post.id}/') 
