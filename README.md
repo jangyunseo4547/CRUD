@@ -87,15 +87,25 @@ from .models import Post #model.py에 있는 post 사용
 admin.site.register(Post) # admin에 post를 추가 등록
 ```
 
-- (`views.py`) 전체 데이터 불러오기 
+- (`views.py`) 전체 데이터 & 단일 게시글 불러오기 
 ```python
 from .models import Post
 
 def index(request):
-    posts = Post.objects.all()
+    posts = Post.objects.all() # Post 대문자
 
     context = {
         'posts':posts,
     }
     return render(request, 'index.html', context)
+
+def detail(request, id):
+    post = Post.objects.get(id=id) # 게시글 하나를 가져오기
+
+    context = {
+        'post':post,
+    }
+    return render(request, 'detail.html', context)
 ```
+
+- (`detail.py`)에 링크 달어 접근하기
